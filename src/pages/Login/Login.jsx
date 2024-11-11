@@ -1,11 +1,85 @@
-import React from 'react'
+import React, {useState} from 'react'
+import styles from "./login.module.css"
+import registerImg from "../../assets/register.png"
+import { useNavigate } from 'react-router-dom';
+import {login} from "../../services/index"
+import toast from 'react-hot-toast';
 
 const Login = () => {
+  const [isLoading, setIsLoading] = useState(false);
+  const [formData, setFormData] = useState({
+    email: "",
+    password: "",
+  });
+  const navigate = useNavigate()
+
+  const handleSignUp = () => {
+    navigate("/")
+  }
+
+  async function handleSubmit(e) {
+    e.preventDefault();
+    if (!formData.email) {
+      return toast.error("Email is required");
+    } else if (!formData.email.includes("@") || !formData.email.includes(".")) {
+      return toast.error("Email is invalid");
+    }
+    if (!formData.password) {
+      return toast.error("Password is required");
+    }
+    setIsLoading(true);
+    try {
+      const response = await login(formData);
+      if (response.message === "Logged in successfully") {
+        toast.success(response.message);
+        setFormData({
+          email: "",
+          password: "",
+        });
+      } else {
+        toast.error(response.message);
+      }
+    } catch (error) {
+      toast.error(error.message);
+    }
+    setIsLoading(false);
+    
+  }
   return (
-    <div>
-      <p>This is logoin pages</p>
+    <div className={styles.container}>
+      <div className={styles.form}>
+        <h1>Already have an account?</h1>
+        <h3>Your personal job finder is here</h3>
+        <form onSubmit={handleSubmit}>
+          <input
+            type="text"
+            placeholder="Email"
+            value={formData.email}
+            onChange={(e) =>
+              setFormData({ ...formData, email: e.target.value })
+            }
+          />
+          <input
+            type="text"
+            placeholder="Password"
+            value={formData.password}
+            onChange={(e) =>
+              setFormData({ ...formData, password: e.target.value })
+            }
+          />
+          <button type="submit" disabled={isLoading}>
+            {isLoading ? "Loading..." : "Sign in"}
+          </button>
+      <h4>Don’t have an account? <span className={styles.span} onClick={handleSignUp}>Sign Up</span></h4>
+        </form>
+      </div>
+      <div className={styles.register_img}>
+        <h1>Your Personal Job Finder</h1>
+        <img src={registerImg} alt="" />
+      </div>
     </div>
-  )
-}
+  );
+};
+
 
 export default Login
