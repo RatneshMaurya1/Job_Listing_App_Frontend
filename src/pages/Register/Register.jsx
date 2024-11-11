@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import styles from "./register.module.css";
 import { register } from "../../services/index";
 import toast from "react-hot-toast";
-import registerImg from "../../assets/register.png"
+import registerImg from "../../assets/register.png";
 import { useNavigate } from "react-router-dom";
 
 const Register = () => {
@@ -14,11 +14,11 @@ const Register = () => {
     phone: "",
     password: "",
   });
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   const handleSignIn = () => {
-    navigate("/login")
-  }
+    navigate("/login");
+  };
 
   async function handleSubmit(e) {
     e.preventDefault();
@@ -65,7 +65,6 @@ const Register = () => {
       toast.error(error.message);
     }
     setIsLoading(false);
-    
   }
   return (
     <div className={styles.container}>
@@ -118,12 +117,18 @@ const Register = () => {
           <button type="submit" disabled={isLoading}>
             {isLoading ? "Loading..." : "Create Account"}
           </button>
-      <h4>Already have an account? <span className={styles.span} onClick={handleSignIn}>Sign In</span></h4>
+          <h4>
+            Already have an account?{" "}
+            <span className={styles.span} onClick={handleSignIn}>
+              Sign In
+            </span>
+          </h4>
         </form>
       </div>
       <div className={styles.register_img}>
-        <h1>Your Personal Job Finder</h1>
-        <img src={registerImg} alt="" />
+        <div className={styles.h1}>
+          <h1>Your Personal Job Finder</h1>
+        </div>
       </div>
     </div>
   );

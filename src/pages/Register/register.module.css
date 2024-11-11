@@ -9,9 +9,9 @@
   width: 55%;
   gap: 20px;
   display: flex;
+  justify-content: center;
   margin: 0;
   padding-left: 80px;
-  padding-top: 70px;
   padding-right: 120px;
   flex-direction: column;
   flex-shrink: 0;
@@ -95,12 +95,18 @@ form > h4 {
   text-decoration: underline;
   cursor: pointer;
 }
-.register_img > h1 {
-  position: absolute;
+.h1 {
   color: #ffffff;
-  font-size: 30px;
+  height: 100%;
+  width: 100%;
+  font-size: 15px;
+  text-align: center;
   letter-spacing: 1.5px;
   font-weight: 500;
-  top: 70px;
-  left: 170px;
+  background-image: url("../../assets/register.png");
+  background-repeat: no-repeat;
+  background-size: fill;
+}
+.h1 > h1{
+  padding-top: 90px;
 }

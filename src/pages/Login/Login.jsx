@@ -1,6 +1,5 @@
 import React, {useState} from 'react'
 import styles from "./login.module.css"
-import registerImg from "../../assets/register.png"
 import { useNavigate } from 'react-router-dom';
 import {login} from "../../services/index"
 import toast from 'react-hot-toast';
@@ -74,8 +73,9 @@ const Login = () => {
         </form>
       </div>
       <div className={styles.register_img}>
+        <div className={styles.h1}>
         <h1>Your Personal Job Finder</h1>
-        <img src={registerImg} alt="" />
+        </div>
       </div>
     </div>
   );
