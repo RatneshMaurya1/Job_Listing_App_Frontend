@@ -105,7 +105,7 @@ form > h4 {
   font-weight: 500;
   background-image: url("../../assets/register.png");
   background-repeat: no-repeat;
-  background-size: fill;
+  background-size: cover;
 }
 .h1 > h1{
   padding-top: 90px;
