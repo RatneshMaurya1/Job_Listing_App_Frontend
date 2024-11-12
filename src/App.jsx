@@ -4,6 +4,7 @@ import { Toaster } from "react-hot-toast";
 
 const Login = lazy(() => import("./pages/Login/Login"));
 const Register = lazy(() => import("./pages/Register/Register"));
+const Home = lazy(() => import("./pages/Home/Home"))
 
 function App() {
   return (
@@ -11,8 +12,9 @@ function App() {
     <BrowserRouter future={{ v7_startTransition: true,v7_relativeSplatPath:true }}>
       <Suspense fallback={<div>Loading...</div>}>
         <Routes>
-          <Route path="/" element={<Register />} />
+          <Route path="/register" element={<Register />} />
           <Route path="/login" element={<Login />} />
+          <Route path="/" element={<Home/>} />
         </Routes>
       </Suspense>
     </BrowserRouter>
@@ -22,3 +24,4 @@ function App() {
 }
 
 export default App;
+

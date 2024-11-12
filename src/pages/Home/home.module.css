@@ -1,0 +1,175 @@
+.homeContainer {
+  height: 100vh;
+  width: 100%;
+}
+
+.header {
+  height: 120px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 70px;
+  background-image: url("../../assets/Rectangle.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  border-bottom-left-radius: 55px;
+  border-bottom-right-radius: 62px;
+}
+.header > h1 {
+  color: #ffffff;
+  font-size: 25px;
+  letter-spacing: 1px;
+  font-weight: 700;
+}
+.btn {
+  display: flex;
+  gap: 10px;
+}
+.btn1 {
+  padding: 10px 35px;
+  background: none;
+  color: #ffffff;
+  font-size: 18px;
+  font-weight: 600;
+  letter-spacing: 1px;
+  text-align: center;
+  text-underline-position: from-font;
+  text-decoration-skip-ink: none;
+  border-radius: 8px;
+  border: 2px solid #ffffff;
+  cursor: pointer;
+}
+.btn2 {
+  padding: 10px 25px;
+  background-color: #ffffff;
+  color: #ed5353;
+  border: none;
+  font-size: 18px;
+  font-weight: 600;
+  letter-spacing: 1px;
+  text-align: center;
+  text-underline-position: from-font;
+  text-decoration-skip-ink: none;
+  border-radius: 8px;
+  cursor: pointer;
+}
+/* .searchContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 30px;
+}
+.search {
+  height: auto;
+  width: 70%;
+  max-width: 1000px;
+  border: 1px solid black;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  position: relative;
+}
+.searchInput > input {
+  width: 100%;
+  padding: 10px 40px 10px 50px; 
+  font-size: 18px;
+  font-weight: 500;
+  margin: 20px 60px;
+  border: 2px solid #E3E3E3;
+  border-radius: 5px;
+  outline: none;
+}
+.searchIcon {
+  position: absolute;
+  font-size: 1.5rem;
+  color: gray;
+  left: 70px;
+}
+.skills{
+  width: 100%;
+  height: auto;
+  margin: 10px 0;
+} */
+
+.skillContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.skillWrapper {
+  border: 1px solid black;
+  margin-top: 30px;
+  height: 200px;
+  width: 70%;
+  display: flex;
+  flex-direction: column;
+  /* gap: 10px; */
+}
+.searchInput {
+  margin: 20px 70px;
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+.searchIcon {
+  position: absolute;
+  font-size: 1.5rem;
+  color: gray;
+  left: 15px;
+}
+.searchInput > input {
+  width: 100%;
+  padding: 10px 40px 10px 50px;
+  font-size: 18px;
+  font-weight: 500;
+  border: 2px solid #e3e3e3;
+  border-radius: 5px;
+  outline: none;
+}
+.skills {
+  margin: 20px 70px;
+  display: flex;
+  justify-content: space-between;
+}
+.skills > select {
+  padding: 10px;
+  border: 2px solid #cecece;
+  border-radius: 5px;
+  color: #9c9c9c;
+  outline: none;
+}
+.skillsBtn {
+  display: flex;
+  gap: 10px;
+}
+.skillsBtn1 {
+  font-size: 15px;
+  height: 30px;
+  font-weight: 500;
+  text-align: center;
+  padding: 0 20px;
+  background-color: #ED5353;
+  outline: none;
+  border: none;
+  color: #ffffff;
+  border-radius: 5px;
+  cursor: pointer;
+}
+.skillsBtn2 {
+  font-size: 17px;
+  height: 30px;
+  font-weight: 600;
+  text-align: center;
+  padding: 0 10px;
+  background: none;
+  outline: none;
+  border: none;
+  color: #ED5353;
+  cursor: pointer;
+}
+
+
+
