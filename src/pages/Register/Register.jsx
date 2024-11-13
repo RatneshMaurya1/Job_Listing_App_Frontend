@@ -58,6 +58,7 @@ const Register = () => {
           password: "",
         });
         setChecked(false);
+        navigate("/")
       } else {
         toast.error(response.message);
       }
@@ -74,12 +75,14 @@ const Register = () => {
         <form onSubmit={handleSubmit}>
           <input
             type="text"
+            name="name"
             placeholder="Name"
             value={formData.name}
             onChange={(e) => setFormData({ ...formData, name: e.target.value })}
           />
           <input
             type="text"
+            name="email"
             placeholder="Email"
             value={formData.email}
             onChange={(e) =>
@@ -88,6 +91,7 @@ const Register = () => {
           />
           <input
             type="text"
+            name="mobile"
             placeholder="Mobile"
             value={formData.phone}
             onChange={(e) =>
@@ -96,6 +100,7 @@ const Register = () => {
           />
           <input
             type="text"
+            name="password"
             placeholder="Password"
             value={formData.password}
             onChange={(e) =>
@@ -104,12 +109,13 @@ const Register = () => {
           />
           <div className={styles.checkbox}>
             <input
+              id="termsCheckbox"
               type="checkbox"
               name="checkbox"
               checked={checked}
               onChange={(e) => setChecked(e.target.checked)}
             />
-            <label htmlFor="checkbox">
+            <label htmlFor="termsCheckbox">
               By creating an account, I agree to our terms of use and privacy
               policy
             </label>

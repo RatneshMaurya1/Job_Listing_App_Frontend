@@ -41,3 +41,25 @@ export const login = async (data) => {
     throw new Error(error.message || 'An unexpected error occurred');
   }
 } 
+
+export const getJobs = async () => {
+  try {
+    const response = await fetch(`${BACKEND_URL}/api/job`, {
+      method:"GET",
+      headers:{
+        'Content-Type': 'application/json',
+      },
+      credentials:"include"
+    })
+    if (response.ok) {
+      return await response.json();
+    } else {
+      const errorResponse = await response.json();
+      throw new Error(errorResponse.message || 'Something went wrong');
+    }
+  } catch (error) {
+    throw new Error(error.message || 'An unexpected error occurred');
+  }
+  
+
+}

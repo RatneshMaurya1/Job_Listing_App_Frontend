@@ -3,8 +3,12 @@ import styles from "./login.module.css"
 import { useNavigate } from 'react-router-dom';
 import {login} from "../../services/index"
 import toast from 'react-hot-toast';
+import { useAuth } from '../../Context/AuthProvider';
+import Cookies from 'js-cookie';
+
 
 const Login = () => {
+  const {isLoggedIn,logIn,logOut} = useAuth()
   const [isLoading, setIsLoading] = useState(false);
   const [formData, setFormData] = useState({
     email: "",
@@ -31,10 +35,14 @@ const Login = () => {
       const response = await login(formData);
       if (response.message === "Logged in successfully") {
         toast.success(response.message);
+        logIn()
+        const token = Cookies.get("token")
+        console.log(token)
         setFormData({
           email: "",
           password: "",
         });
+        navigate("/")
       } else {
         toast.error(response.message);
       }
@@ -52,6 +60,8 @@ const Login = () => {
         <form onSubmit={handleSubmit}>
           <input
             type="text"
+            name='email'
+            id='email'
             placeholder="Email"
             value={formData.email}
             onChange={(e) =>
@@ -60,6 +70,7 @@ const Login = () => {
           />
           <input
             type="text"
+            name='password'
             placeholder="Password"
             value={formData.password}
             onChange={(e) =>
