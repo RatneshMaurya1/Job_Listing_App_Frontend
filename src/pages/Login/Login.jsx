@@ -1,10 +1,10 @@
-import React, {useState} from 'react'
+import React, {useEffect, useState} from 'react'
 import styles from "./login.module.css"
 import { useNavigate } from 'react-router-dom';
 import {login} from "../../services/index"
 import toast from 'react-hot-toast';
-import { useAuth } from '../../Context/AuthProvider';
 import Cookies from 'js-cookie';
+import { useAuth } from '../../Context/AuthContext';
 
 
 const Login = () => {
@@ -35,9 +35,13 @@ const Login = () => {
       const response = await login(formData);
       if (response.message === "Logged in successfully") {
         toast.success(response.message);
-        logIn()
-        const token = Cookies.get("token")
-        console.log(token)
+          const token = Cookies.get("token")
+          if(token){
+            logIn()
+          }
+          localStorage.setItem("name",response.user.name)
+          localStorage.setItem("userId",response.user._id)
+        console.log(response)
         setFormData({
           email: "",
           password: "",

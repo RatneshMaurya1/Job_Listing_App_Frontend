@@ -1,4 +1,4 @@
-import {Children, createContext, useContext, useState ,useEffect} from "react";
+import {createContext, useContext, useState ,useEffect} from "react";
 import Cookies from "js-cookie";
 
 const AuthContext = createContext()
@@ -10,11 +10,13 @@ export const AuthProvider = ({children}) => {
     const logOut = () => setIsLoggedIn(false)
 
     useEffect(() => {
-        // Check for JWT token in cookies on initial load
-        const token = Cookies.get('token'); // replace 'token' with your cookie's name
+        const token = Cookies.get('token'); 
         console.log(token)
         if (token) {
             setIsLoggedIn(true);
+        }else{
+            localStorage.removeItem("name")
+            localStorage.removeItem("userId")
         }
     }, []);
 

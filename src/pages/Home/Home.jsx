@@ -3,10 +3,10 @@ import styles from "./home.module.css";
 import { useNavigate } from "react-router-dom";
 import Search from "../../components/search/Search";
 import Job from "../../components/Job/Job";
-import { useAuth } from "../../Context/AuthProvider";
+import { useAuth } from "../../Context/AuthContext";
 
 const Home = () => {
-  const {isLoggedIn,login,logOut} = useAuth()
+  const {isLoggedIn,logIn,logOut} = useAuth()
 
   const navigate = useNavigate();
 
@@ -17,6 +17,7 @@ const Home = () => {
   const handleSignUp = () => {
     navigate("/register");
   };
+  const name = localStorage.getItem("name")
 
   return (
     <>
@@ -26,7 +27,7 @@ const Home = () => {
           {isLoggedIn ? (
             <div className={styles.loggedInHeader}>
               <button className={styles.logoutBtn} onClick={() => alert("Logged out!")}>Logout</button>
-              <span>Hello! Recruiter</span>
+              <span>Hello! {name}</span>
             </div>
           ) : (
             <div className={styles.btn}>

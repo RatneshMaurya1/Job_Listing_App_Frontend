@@ -2,13 +2,15 @@ import React,{useState} from "react";
 import { FiSearch } from "@react-icons/all-files/fi/FiSearch";
 import arrow from "../../assets/arrow.png"
 import styles from "./search.module.css";
-import { useAuth } from "../../Context/AuthProvider";
+import { useAuth } from "../../Context/AuthContext";
+import { useNavigate } from "react-router-dom";
 
 
 const Search = () => {
+    const {isLoggedIn} = useAuth()
     const [value, setValue] = useState([]);
     const [showSkills, setShowSkills] = useState(false);
-    const {isLoggedIn} = useAuth()
+    const navigate = useNavigate()
 
     const handleSkillsOption = (skill) => {
         setShowSkills(!showSkills)
@@ -23,6 +25,7 @@ const Search = () => {
       const clearSkill = () => {
         setValue([])
       }
+  
   return (
     <>
       <div className={styles.skillContainer}>
@@ -55,7 +58,7 @@ const Search = () => {
               ))}
             </div>
             <div className={styles.skillsBtn}>
-              { isLoggedIn && <button className={styles.skillsBtn1}>+ Add Job</button>}
+              {isLoggedIn && <button className={styles.skillsBtn1} onClick={() => (navigate("/create"))}>+ Add Job</button>}
               <button className={styles.skillsBtn1}>Apply Filter</button>
               <button className={styles.skillsBtn2} onClick={clearSkill}>
                 Clear

@@ -1,7 +1,8 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import { lazy, Suspense, useState } from "react";
+import { lazy, Suspense } from "react";
 import { Toaster } from "react-hot-toast";
-import { AuthProvider } from "./Context/AuthProvider";
+import { AuthProvider } from "./Context/AuthContext";
+import CreateJob from "./pages/CreateJob/CreateJob";
 
 
 const Login = lazy(() => import("./pages/Login/Login"));
@@ -19,6 +20,7 @@ function App() {
             <Route path="/register" element={<Register />} />
             <Route path="/login" element={<Login/>} />
             <Route path="/" element={<Home />} />
+            <Route path="/create" element={<CreateJob/>}/>
           </Routes>
         </Suspense>
       </BrowserRouter>

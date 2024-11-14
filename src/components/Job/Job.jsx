@@ -1,11 +1,9 @@
 import React, { useEffect, useState } from 'react'
 import styles from "./job.module.css"
 import logo from "../../assets/Logo.png"
-import { useAuth } from '../../Context/AuthProvider'
 import { getJobs } from '../../services'
 
 const Job = () => {
-    const {isLoggedIn} = useAuth() 
     const [job,setjob] = useState([])
 
     useEffect( () => {
@@ -52,7 +50,7 @@ const Job = () => {
                 <p>JavaScript</p>
                 </div>
                 <div className={styles.detailsBtn}>
-                    {isLoggedIn && <button className={styles.detailsBtn1}>Edit job</button>}
+                    <button className={styles.detailsBtn1}>Edit job</button>
                     <button className={styles.detailsBtn2}>View details</button>
                 </div>
                 

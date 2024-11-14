@@ -7,6 +7,7 @@ export const register = async (data) => {
       headers: {
         'Content-Type': 'application/json',
       },
+      credentials:"include",
       body: JSON.stringify(data),
     });
 
@@ -28,6 +29,7 @@ export const login = async (data) => {
       headers: {
         'Content-Type': 'application/json',
       },
+      credentials:"include",
       body: JSON.stringify(data),
     });
 
