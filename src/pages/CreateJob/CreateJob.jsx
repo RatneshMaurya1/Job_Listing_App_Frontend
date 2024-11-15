@@ -2,6 +2,8 @@ import styles from "./createJob.module.css";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import arrow from "../../assets/arrow.png";
+import { createJob } from "../../services";
+import toast from "react-hot-toast";
 
 const CreateJob = () => {
   const [isLoading, setIsLoading] = useState(false);
@@ -29,21 +31,32 @@ const CreateJob = () => {
   const removeSkill = (skill) => {
     setValue((prev) => prev.filter((s) => s !== skill));
   };
-  const clearSkill = () => {
-    setValue([]);
-  };
+  
 
   async function handleSubmit(e) {
     e.preventDefault();
+    const updatedFormData = {
+      ...formData,
+      skills:value
+    } 
 
     setIsLoading(true);
     try {
-      const response = await login(formData);
-      if (response.message === "Logged in successfully") {
+      const response = await createJob(updatedFormData);
+      if (response.message === "Job created successfully") {
         toast.success(response.message);
         setFormData({
-          email: "",
-          password: "",
+          company: "",
+          logoUrl: "",
+          jobPosition: "",
+          salary: "",
+          jobType: "",
+          remoteOffice: "",
+          location: "",
+          description: "",
+          about: "",
+          skills: [""],
+          information: "",
         });
         navigate("/");
       } else {
@@ -65,11 +78,13 @@ const CreateJob = () => {
               type="text"
               id="company"
               placeholder="Enter your company name here"
+              value={formData.company}
+              onChange={(e) => setFormData({...formData,company:e.target.value})}
             />
           </div>
           <div className={styles.url}>
             <label htmlFor="url">Enter the link</label>
-            <input type="text" id="url" placeholder="Enter the link" />
+            <input type="text" id="url" placeholder="Enter the link" value={formData.logoUrl} onChange={(e) => setFormData({...formData,logoUrl:e.target.value})}/>
           </div>
           <div className={styles.jobPosition}>
             <label htmlFor="jobPosition">Job position</label>
@@ -77,6 +92,8 @@ const CreateJob = () => {
               type="text"
               id="jobPosition"
               placeholder="Enter job position"
+              value={formData.jobPosition}
+              onChange={(e) => setFormData({...formData,jobPosition:e.target.value})}
             />
           </div>
 
@@ -86,12 +103,14 @@ const CreateJob = () => {
               type="text"
               id="salary"
               placeholder="Enter Amount in rupees"
+              value={formData.salary}
+              onChange={(e) => setFormData({...formData, salary:e.target.value})}
             />
           </div>
 
           <div className={styles.jobTypes}>
             <label htmlFor="jobType">Job Type</label>
-            <select name="jobType" id="jobType">
+            <select name="jobType" id="jobType" value={formData.jobType} onChange={(e) => setFormData({...formData,jobType:e.target.value})}>
               <option value="Select" disabled>
                 Select
               </option>
@@ -105,7 +124,7 @@ const CreateJob = () => {
 
           <div className={styles.remoteOffice}>
             <label htmlFor="remoteOffice">Remote/office</label>
-            <select name="remoteOffice" id="remoteOffice">
+            <select name="remoteOffice" id="remoteOffice" value={formData.remoteOffice} onChange={(e) => setFormData({...formData,remoteOffice:e.target.value})}>
               <option value="Select" disabled>
                 Select
               </option>
@@ -116,12 +135,12 @@ const CreateJob = () => {
 
           <div className={styles.location}>
             <label htmlFor="location">Location</label>
-            <input type="text" id="location" placeholder="Enter Location" />
+            <input type="text" id="location" placeholder="Enter Location" value={formData.location} onChange={(e) => setFormData({...formData,location:e.target.value})}/>
           </div>
 
           <div className={styles.description}>
             <label htmlFor="description">Job Description</label>
-            <textarea id="jobDescription" name="jobDescription" placeholder="Type the job description" rows="5"></textarea>
+            <textarea id="jobDescription" name="jobDescription" placeholder="Type the job description" rows="5" value={formData.description} onChange={(e) => setFormData({...formData,description:e.target.value})}></textarea>
           </div>
 
           <div className={styles.about}>
@@ -129,7 +148,10 @@ const CreateJob = () => {
             <textarea               type="text"
               id="about"
               name="about"
-              placeholder="Type about your company"></textarea>
+              placeholder="Type about your company"
+              value={formData.about}
+              onChange={(e) => setFormData({...formData,about:e.target.value})}
+              ></textarea>
           </div>
           <div className={styles.list}>
             <h1>Skills Required</h1>
@@ -170,6 +192,8 @@ const CreateJob = () => {
               type="text"
               id="information"
               placeholder="Enter the additional information"
+              value={formData.information}
+              onChange={(e) => setFormData({...formData,information:e.target.value})}
             />
           </div>
 

@@ -35,12 +35,14 @@ const Login = () => {
       const response = await login(formData);
       if (response.message === "Logged in successfully") {
         toast.success(response.message);
-          const token = Cookies.get("token")
-          if(token){
+          localStorage.setItem("token",response.token)
+
+          if(response.token){
             logIn()
+            localStorage.setItem("name",response.user.name)
+            localStorage.setItem("userId",response.user._id)
           }
-          localStorage.setItem("name",response.user.name)
-          localStorage.setItem("userId",response.user._id)
+
         console.log(response)
         setFormData({
           email: "",

@@ -1,5 +1,4 @@
 import {createContext, useContext, useState ,useEffect} from "react";
-import Cookies from "js-cookie";
 
 const AuthContext = createContext()
 
@@ -10,7 +9,7 @@ export const AuthProvider = ({children}) => {
     const logOut = () => setIsLoggedIn(false)
 
     useEffect(() => {
-        const token = Cookies.get('token'); 
+        const token = localStorage.getItem("token") 
         console.log(token)
         if (token) {
             setIsLoggedIn(true);

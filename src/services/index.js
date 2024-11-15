@@ -62,6 +62,45 @@ export const getJobs = async () => {
   } catch (error) {
     throw new Error(error.message || 'An unexpected error occurred');
   }
-  
+}
 
+export const createJob = async (data) => {
+  try {
+    const response = await fetch(`${BACKEND_URL}/api/job`,{
+      method:"POST",
+      headers:{
+        'Content-Type': 'application/json',
+        'Authorization': `${localStorage.getItem("token")}`
+      },
+      body: JSON.stringify(data)
+    })
+    if (response.ok) {
+      return await response.json();
+    } else {
+      const errorResponse = await response.json();
+      throw new Error(errorResponse.message || 'Something went wrong');
+    }
+  } catch (error) {
+    throw new Error(error.message || 'An unexpected error occurred');
+  }
+}
+
+export const jobById = async (id) => {
+  try {
+    const response = await fetch(`${BACKEND_URL}/api/job/${id}`, {
+      method:"GET",
+      headers:{
+        'Content-Type': 'application/json',
+      },
+      credentials:"include"
+    })
+    if (response.ok) {
+      return await response.json();
+    } else {
+      const errorResponse = await response.json();
+      throw new Error(errorResponse.message || 'Something went wrong');
+    }
+  } catch (error) {
+    throw new Error(error.message || 'An unexpected error occurred');
+  }
 }
