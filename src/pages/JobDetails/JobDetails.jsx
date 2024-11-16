@@ -43,6 +43,13 @@ const JobDetails = () => {
     navigate("/");
     toast.success("Logged out successfully");
   };
+  const editBtn = () => {
+    if(localStorage.getItem("userId") === jobDetails.userId){
+      return true
+    }else{
+      return false
+    }
+  }
   const name = localStorage.getItem("name");
 
   return (
@@ -88,7 +95,7 @@ const JobDetails = () => {
 
             <div className={styles.name}>
               <h1>{jobDetails.jobPosition}</h1>
-              <button>Edit job</button>
+              {editBtn() && <button onClick={() => navigate(`/edit/${jobDetails._id}`)}>Edit job</button>}
             </div>
 
             <div className={styles.location}>
