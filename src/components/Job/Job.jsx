@@ -3,11 +3,12 @@ import styles from "./job.module.css";
 import { DeleteJobById, getJobs } from "../../services";
 import { useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
+import { useAuth } from "../../Context/AuthContext";
 
 const Job = () => {
   const [job, setjob] = useState([]);
   const navigate = useNavigate();
-  
+  const {isLoggedIn} = useAuth()
 
   useEffect(() => {
     const job = async () => {
@@ -19,7 +20,7 @@ const Job = () => {
       }
     };
     job();
-  }, []);
+  }, [isLoggedIn]);
 
   const isEditable = (job) => {
     if (localStorage.getItem("userId") === job.userId) {

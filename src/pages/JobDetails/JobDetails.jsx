@@ -95,7 +95,9 @@ const JobDetails = () => {
 
             <div className={styles.name}>
               <h1>{jobDetails.jobPosition}</h1>
-              {editBtn() && <button onClick={() => navigate(`/edit/${jobDetails._id}`)}>Edit job</button>}
+              {editBtn() && <button onClick={() => navigate(`/edit/${jobDetails._id
+                
+              }`)}>Edit job</button>}
             </div>
 
             <div className={styles.location}>
