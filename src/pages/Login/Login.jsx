@@ -8,7 +8,7 @@ import { useAuth } from '../../Context/AuthContext';
 
 
 const Login = () => {
-  const {isLoggedIn,logIn,logOut} = useAuth()
+  const {logIn} = useAuth()
   const [isLoading, setIsLoading] = useState(false);
   const [formData, setFormData] = useState({
     email: "",
@@ -43,7 +43,6 @@ const Login = () => {
             localStorage.setItem("userId",response.user._id)
           }
 
-        console.log(response)
         setFormData({
           email: "",
           password: "",

@@ -94,7 +94,7 @@
 .detailsBtn{
     display: flex;
     justify-content: flex-end;
-    gap: 10px;
+    gap: 15px;
 }
 .detailsBtn2{
     height: 15px;
@@ -113,7 +113,7 @@
 }
 .detailsBtn1{
     height: 15px;
-    width: 35%;
+    width: 37%;
     font-size: 15px;
     height: 30px;
     font-weight: 500;
