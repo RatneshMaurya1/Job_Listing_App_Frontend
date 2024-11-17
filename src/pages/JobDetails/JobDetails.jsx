@@ -44,12 +44,18 @@ const JobDetails = () => {
     toast.success("Logged out successfully");
   };
   const editBtn = () => {
-    if(localStorage.getItem("userId") === jobDetails.userId){
-      return true
-    }else{
-      return false
+    if (localStorage.getItem("userId") === jobDetails.userId) {
+      return true;
+    } else {
+      return false;
     }
-  }
+  };
+  
+  const splitDescription =
+    jobDetails && jobDetails.description
+      ? jobDetails.description.split(/(?=\d+\.\s)/) 
+      : [];
+
   const name = localStorage.getItem("name");
 
   return (
@@ -79,7 +85,8 @@ const JobDetails = () => {
           <div className={styles.headerWrapper}>
             <div className={styles.jobHeader}>
               <p>
-                {jobDetails.jobPosition} work from home job/internship at {jobDetails.company}
+                {jobDetails.jobPosition} work from home job/internship at{" "}
+                {jobDetails.company}
               </p>
             </div>
           </div>
@@ -95,9 +102,11 @@ const JobDetails = () => {
 
             <div className={styles.name}>
               <h1>{jobDetails.jobPosition}</h1>
-              {editBtn() && <button onClick={() => navigate(`/edit/${jobDetails._id
-                
-              }`)}>Edit job</button>}
+              {editBtn() && (
+                <button onClick={() => navigate(`/edit/${jobDetails._id}`)}>
+                  Edit job
+                </button>
+              )}
             </div>
 
             <div className={styles.location}>
@@ -122,26 +131,34 @@ const JobDetails = () => {
             <div className={styles.companyDescription}>
               <h2>About the job/internship</h2>
               <div className={styles.description}>
-                <p>{jobDetails.description}</p>
+                {splitDescription && splitDescription.length > 0 ? (
+                  splitDescription.map((item, index) => (
+                    <p key={index}>{item.trim()}</p> 
+                  ))
+                ) : (
+                  <p>
+                    {jobDetails?.description?.trim() ||
+                      "No description available."}
+                  </p>
+                )}
               </div>
             </div>
 
             <div className={styles.skills}>
               <pre>Skill(s) required</pre>
               <div className={styles.skill}>
-                {jobDetails.skills.map((s,i) => (
+                {jobDetails.skills.map((s, i) => (
                   <p key={i}>{s}</p>
                 ))}
               </div>
             </div>
 
             <div className={styles.companyInformation}>
-              <h2>About the job/internship</h2>
+              <h2>Additional Information</h2>
               <div className={styles.Information}>
                 <p>{jobDetails.information}</p>
               </div>
             </div>
-
           </div>
         </div>
       ) : (
